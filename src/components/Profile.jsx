@@ -8,47 +8,42 @@ function Profile() {
 
     const [dogImage, setDogImage] = useState("")
     const [dog, setDog] = useState({
-      name: '',
-      nickname: '',
-      owner: '',
-      age: '',
-      bio: '',
-      present: false
+      
     });
-  
-    useEffect(() => {
-      async function fetchDog() {
-        try {
-        const get = await fetch("https://dog.ceo/api/breeds/image/random")
-        const data = await get.json()
-    setDogImage(data.message)
 
-          const response = await axios.get(`http://localhost:3000/dogs/${id}`);
-          console.log("Response", response);
-  
-          setDog(response.data);
-        } catch (error) {
-          console.error('Failed to fetch dog:', error);
+    useEffect(() => {
+        async function fetchDog() {
+            try {
+                const get = await fetch("https://dog.ceo/api/breeds/image/random")
+                const data = await get.json()
+                setDogImage(data.message)
+
+                const response = await axios.get(`http://localhost:3000/dogs/${id}`);
+                console.log("Resp", response);
+                setDog(response.data);
+            
+            } catch (error) {
+                console.error(error);
+            }
         }
-      }
-      
-      fetchDog();
+
+        fetchDog();
     }, [id]);
-    
-  
+
+
     return (
-      <div>
-        <h2>{dog.name} Profile</h2>
-        <img className="dog-image" src={dogImage}  />
-        <p>Nickname: {dog.nickname}</p>
-        <p>Owner: {dog.owner}</p>
-        <p>Age: {dog.age}</p>
-        <p>Bio: {dog.bio}</p>
-        <p>Present: {dog.present ? 'Yes' : 'No'}</p>
-        <Link to="/">Back</Link>
-      </div>
-      
+        <div>
+            <h2>{dog.name} Profile</h2>
+            <img className="dog-image" src={dogImage} />
+            <p>Nickname: {dog.nickname}</p>
+            <p>Owner: {dog.owner}</p>
+            <p>Age: {dog.age}</p>
+            <p>Bio: {dog.bio}</p>
+            <p>Present: {dog.present ? 'Yes' : 'No'}</p>
+            <Link to="/">Back</Link>
+        </div>
+
     );
-  }
-  
-  export default Profile
+}
+
+export default Profile

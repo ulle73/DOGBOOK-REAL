@@ -14,7 +14,7 @@ function Start() {
                 console.error('Failed to fetch dogs:', error);
             }
         }
-        
+
         getDataBackEnd();
     }, [])
 
@@ -22,25 +22,29 @@ function Start() {
     const deleteDog = async (id) => {
         setDogs(dogs.filter((dog) => dog._id !== id));
         await fetch(`http://localhost:3000/dogs/${id}`, { method: "DELETE" });
-         // DELETE FRÅN  BACKEND
-      };
+        // DELETE FRÅN  BACKEND
+    };
 
-  return (
-    <div>
-      <h2>Start</h2>
-      <Link to="/create">Create Dog</Link>
-     <ul>
-       {dogs.map((dog)=>{
-           return <li key={dog.id}><Link to={`/profile/${dog._id}`}>{dog.name}</Link>   <button
-           className="trashcan"
-           onClick={() => deleteDog(dog._id)}
-         >
-           <i className="fa-solid fa-trash"></i>
-         </button></li>
-       })}
-     </ul>
-    </div>
-  );
+
+
+
+    return (
+        <div>
+            <h2>Start</h2>
+            
+            <ul>
+                {dogs.map((dog) => {
+                    return <li key={dog.id}><Link to={`/profile/${dog._id}`} style={{ color: dog.present ? "rgb(1,204,1)" : "red" }}>{dog.name}</Link>
+                        <button
+                            className="trashcan"
+                            onClick={() => deleteDog(dog._id)}>
+                            <i className="fa-solid fa-trash"></i>
+                        </button></li>
+                })}
+            </ul>
+            <Link to="/create">Create Dog</Link>
+        </div>
+    );
 }
 
 export default Start;
