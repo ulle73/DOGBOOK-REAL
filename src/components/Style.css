@@ -1,0 +1,171 @@
+*{
+    /* border: red 1px solid; */
+   
+}
+
+body {
+    /* position: relative; */
+    font-family: 'Roboto', sans-serif;
+ 
+}
+
+body::before {
+    content: "";
+    background-image: url('https://www.shutterstock.com/image-vector/ink-dogs-paw-illustration-cats-600nw-1753079762.jpg');
+    opacity: 0.03; 
+   background-size: 200px;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1; 
+}
+
+/* #root{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-size: 300px;
+   
+    
+} */
+
+#root {
+    max-width: 700px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   
+    padding: 50px;
+    height: 75vh;
+   
+   
+    
+}
+
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+    
+}
+
+
+
+.dog-name{
+    color: rgb(0, 140, 255);
+}
+
+.dog-image{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 3px solid  rgb(0, 140, 255);
+    justify-self: flex-start;
+    align-self: flex-start;
+}
+
+
+
+
+
+
+
+h1 {
+    text-align: center;
+    color: #00aaff;
+}
+
+h2 {
+    color: #00aaff; 
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #66ccff; 
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #00aaff; 
+}
+
+input[type="text"],[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: #000000;
+   caret-color: #00aaff;
+}
+
+button, .submit-button {
+    padding: 10px 20px;
+    background-color: #007bff; 
+    color: #fff; 
+    border: none;
+    cursor: pointer;
+}
+
+button:hover, .submit-button:hover{
+    background-color: #0056b3; 
+}
+
+
+
+
+
+
+.link {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+.trashcan {
+    color: red;
+    background: none;
+  }
+  
+  .trashcan:hover {
+    background: none; 
+    animation: shake 0.7s infinite; 
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0) scale(1.5); }
+    25% { transform: translateX(-1px) scale(1.5); } 
+    50% { transform: translateX(1px) scale(1.5); } 
+    75% { transform: translateX(-1px) scale(1.5); } 
+  }
+  
+
+
+  
