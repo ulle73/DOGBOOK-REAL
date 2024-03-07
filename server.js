@@ -107,7 +107,7 @@ app.post('/dogs', async (req, res) => {
             nickname: req.body.nickname,
             owner: req.body.owner,
             age: req.body.age,
-            bio: req.body.description,
+            bio: req.body.bio,
             // friends: req.body.friends,
             present: req.body.present
         });
