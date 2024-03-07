@@ -33,10 +33,10 @@ const dogSchema = new mongoose.Schema({
         required: true
     },
     bio: String,
-    friends: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Dog'
-    }],
+    // friends: [{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'Dog'
+    // }],
     present: {
         type: Boolean,
         default: false
@@ -105,9 +105,10 @@ app.post('/dogs', async (req, res) => {
         const newDog = new Dog({
             name: req.body.name,
             nickname: req.body.nickname,
+            owner: req.body.owner,
             age: req.body.age,
-            description: req.body.description,
-            friends: req.body.friends,
+            bio: req.body.description,
+            // friends: req.body.friends,
             present: req.body.present
         });
         await newDog.save()

@@ -4,13 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Create = () => {
   const [newDog, setNewDog] = useState({
-    name: "",
-    nickname: "",
-    owner: "",
-    age: 0,
-    bio: "",
-    friends: [],
-    present: false,
+   
   });
 
   const navigate = useNavigate();
@@ -39,8 +33,8 @@ const Create = () => {
       <form onSubmit={saveData}>
         <input onChange={saveName} type="text" placeholder="name" name="name" required />
         <input onChange={saveName} type="text" placeholder="nickename" name="nickname" required />
-        <input onChange={saveName} type="number" placeholder="age" name="age" required />
         <input onChange={saveName} type="text" placeholder="owner" name="owner" required />
+        <input onChange={saveName} type="number" placeholder="age" name="age" required />
         <input onChange={saveName} type="text" placeholder="bio" name="bio" required />
         {/* <input onChange={saveName} type="text" placeholder="friends" name="friends"/> */}
         <label>Present: <input onChange={saveName} type="checkbox" name="present" /></label>

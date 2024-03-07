@@ -56,7 +56,7 @@ function Edit() {
         <input type="text" name="nickname" value={dog.nickname} onChange={saveName} />
         <input type="text" name="owner" value={dog.owner} onChange={saveName} required />
         <input type="number" name="age" value={dog.age} onChange={saveName} required />
-        <textarea name="bio" value={dog.bio} onChange={saveName} />
+        <input type="text" name="bio" value={dog.bio} onChange={saveName} />
         <label>Present: <input type="checkbox" name="present" checked={dog.present} onChange={saveName} /></label>
         <button type="submit">Save</button>
       </form>
