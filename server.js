@@ -26,12 +26,13 @@ const dogSchema = new mongoose.Schema({
         required: true
     },
     nickname: String,
+    owner: String,
     age: {
         type: Number,
         min: 0,
         required: true
     },
-    description: String,
+    bio: String,
     friends: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Dog'
@@ -117,18 +118,17 @@ app.post('/dogs', async (req, res) => {
 });
 
 
-app.put('/dogs/:id', async (req, res) => {
+app.put("/dogs/:id", async (req, res) => {
     try {
-        const id = req.params.id
-        const changedDog = await Dog.findByIdAndUpdate(id, req.body, { new: true })
-        if (!changedDog) {
-            return res.sendStatus(404)
-        }
-        res.sendStatus(200)
+      const { id } = req.params;
+      await Dog.findByIdAndUpdate(id, req.body); // Uppdatera en hund i databasen
+      const updatedDog = await Dog.findById(id); // Hämta uppdaterad hund från databasen
+      res.status(200).json(updatedDog);
     } catch (error) {
-        res.sendStatus(500)
+      console.error("Failed to update dog:", error);
+      res.sendStatus(500);
     }
-})
+  })
 
 
 app.delete('/dogs/:id', async (req, res) => {

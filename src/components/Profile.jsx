@@ -40,6 +40,9 @@ function Profile() {
             <p>Age: {dog.age}</p>
             <p>Bio: {dog.bio}</p>
             <p>Present: {dog.present ? 'Yes' : 'No'}</p>
+            <Link to={`/edit/${id}`}>Edit</Link>
+            <br />
+            <br />
             <Link to="/">Back</Link>
         </div>
 
