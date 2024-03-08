@@ -40,6 +40,10 @@ function Profile() {
             <p>Age: {dog.age}</p>
             <p>Bio: {dog.bio}</p>
             <p>Present: {dog.present ? 'Yes' : 'No'}</p>
+            <p>Friends: </p>
+            <ul>{dog.friends && dog.friends.length > 0 ? dog.friends.map((friend, index) => (
+  <li key={index}>{friend.name}</li>
+)) : 'No friends'}</ul>
             <Link to={`/edit/${id}`}>Edit</Link>
             <br />
             <br />

@@ -33,17 +33,21 @@ const dogSchema = new mongoose.Schema({
         required: true
     },
     bio: String,
-    // friends: [{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Dog'
-    // }],
+    friends: [{
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: 'Dog'
+        name: String,
+    }],
     present: {
         type: Boolean,
         default: false
     }
 });
 
+
+
 const Dog = mongoose.model('Dog', dogSchema)
+
 
 
 ////////////////////////////////
@@ -65,25 +69,14 @@ app.get('/dogs', async (req, res) => {
 });
 
 
-// app.get('/dogs/:id', async (req, res) => {
-//     try {
-//         const dog = await Dog.findById(req.params.id.toString());
-//         console.log(dog)
-//         if (!dog) {
-//             return res.status(404).json({ error: 'Dog not found' });
-//         }
-//         res.json(dog);
-//     } catch (error) {
-//         console.error('Failed to fetch dog:', error);
-//         res.status(500).json({ error: 'Failed to fetch dog' });
-//     }
-// })
 
 app.get('/dogs/:id', async (req, res) => {
     try {
         console.log("Request received for dog with ID:", req.params.id, typeof req.params.id);
         
-        const dog = await Dog.findById(req.params.id.toString());
+    const dog = await Dog.findById(req.params.id.toString());
+
+
         console.log("Dog found:", dog);
 
         if (!dog) {
@@ -122,8 +115,10 @@ app.post('/dogs', async (req, res) => {
 app.put("/dogs/:id", async (req, res) => {
     try {
       const { id } = req.params;
-      await Dog.findByIdAndUpdate(id, req.body); // Uppdatera en hund i databasen
-      const updatedDog = await Dog.findById(id); // Hämta uppdaterad hund från databasen
+      console.log("DETTA", req.params)
+      await Dog.findByIdAndUpdate(id,  req.body); // Uppdatera en hund i databasen
+      const updatedDog = await Dog.findById(id);
+      console.log(updatedDog) // Hämta uppdaterad hund från databasen
       res.status(200).json(updatedDog);
     } catch (error) {
       console.error("Failed to update dog:", error);
