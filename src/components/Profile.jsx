@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import Edit from './Edit';
 
 function Profile() {
     const { id } = useParams();
@@ -10,6 +11,21 @@ function Profile() {
     const [dog, setDog] = useState({
       
     });
+    const [allDogs, setAllDogs]= useState([])
+
+
+    useEffect(() => {
+        async function getDataBackEnd() {
+            try {
+                const response = await axios.get('http://localhost:3000/dogs');
+                setAllDogs(response.data);
+            } catch (error) {
+                console.error('Failed to fetch dogs:', error);
+            }
+        }
+
+        getDataBackEnd();
+    }, [])
 
     useEffect(() => {
         async function fetchDog() {
@@ -41,9 +57,18 @@ function Profile() {
             <p>Bio: {dog.bio}</p>
             <p>Present: {dog.present ? 'Yes' : 'No'}</p>
             <p>Friends: </p>
-            <ul>{dog.friends && dog.friends.length > 0 ? dog.friends.map((friend, index) => (
+            {/* <ul>{dog.friends && dog.friends.length > 0 ? dog.friends.map((friend, index) => (
   <li key={index}>{friend.name}</li>
-)) : 'No friends'}</ul>
+)) : 'No friends'}</ul> */}
+
+<ul>
+                {dog.friends && dog.friends.length > 0 ? dog.friends.map((friend, index) => (
+                    // Kontrollera om vännen finns i allDogs innan den renderas
+                    allDogs.some(d => d._id === friend._id) && <li key={index}>{friend.name}</li>
+                )) : 'No friends'}
+            </ul>
+
+
             <Link to={`/edit/${id}`}>Edit</Link>
             <br />
             <br />
