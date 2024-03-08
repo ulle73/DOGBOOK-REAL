@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 
 
-function Start({ dogs, setDogs, friendList, setFriendList}) {
+function Start({ dogs, setDogs, setFriendList}) {
 
 
 

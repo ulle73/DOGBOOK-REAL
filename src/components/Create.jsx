@@ -21,6 +21,7 @@ const Create = ({dogs, setDogs, friendList, setFriendList}) => {
     event.preventDefault()
     try {
       const resp = await axios.post('http://localhost:3000/dogs', newDog)
+      console.log(resp.data)
       setDogs([...dogs, resp.data])
       setFriendList([...friendList, resp.data])
       navigate("/")
@@ -38,7 +39,7 @@ const Create = ({dogs, setDogs, friendList, setFriendList}) => {
         <input onChange={saveName} type="text" placeholder="owner" name="owner" required />
         <input onChange={saveName} type="number" placeholder="age" name="age" required />
         <input onChange={saveName} type="text" placeholder="bio" name="bio" required />
-        <label>Present: <input onChange={saveName} type="checkbox" name="present" /></label>
+        <p>Present: <input onChange={saveName} type="checkbox" name="present" /></p>
 
         <input className="submit-button" type="submit" name="Submit" value="Save Info" />
       </form>

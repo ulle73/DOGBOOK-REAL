@@ -16,6 +16,7 @@ function App() {
           try {
               const response = await axios.get('http://localhost:3000/dogs')
               setDogs(response.data)
+              setFriendList(response.data)
           } catch (error) {
               console.error('Failed to fetch dogs:', error)
           }
@@ -23,23 +24,6 @@ function App() {
 
       getDataBackEnd()
   }, [])
-
-
-
-  useEffect(() => {
-    async function getDataBackEnd() {
-        try {
-            const response = await axios.get('http://localhost:3000/dogs')
-            setFriendList(response.data)
-        } catch (error) {
-            console.error('Failed to fetch dogs:', error)
-        }
-    }
-
-    getDataBackEnd()
-}, [])
-
-
 
 
 
@@ -51,7 +35,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Start dogs={dogs} setDogs={setDogs} friendList={friendList} setFriendList={setFriendList}/>} />
           <Route path="/create" element={<Create dogs={dogs} setDogs={setDogs} friendList={friendList} setFriendList={setFriendList}/>} />
-          <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/profile/:id" element={<Profile dogs={dogs}/>} />
           <Route path="/edit/:id" element={<Edit friendList={friendList} setFriendList={setFriendList}/>} />
         </Routes>
    

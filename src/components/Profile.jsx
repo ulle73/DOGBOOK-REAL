@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
-// import Edit from './Edit'
 
-function Profile() {
+
+function Profile({dogs}) {
     const { id } = useParams()
     console.log("ID:", id, typeof id)
 
@@ -11,21 +11,7 @@ function Profile() {
     const [dog, setDog] = useState({
 
     })
-    const [allDogs, setAllDogs] = useState([])
-
-
-    useEffect(() => {
-        async function getDataBackEnd() {
-            try {
-                const response = await axios.get('http://localhost:3000/dogs')
-                setAllDogs(response.data)
-            } catch (error) {
-                console.error('Failed to fetch dogs:', error)
-            }
-        }
-
-        getDataBackEnd()
-    }, [])
+ 
 
     useEffect(() => {
         async function fetchDog() {
@@ -58,7 +44,7 @@ function Profile() {
             <p>Present: {dog.present ? 'Yes' : 'No'}</p>
             <p>Friends: </p>
 
-            <ul>{dog.friends && dog.friends.length > 0 ? dog.friends.filter(friend => allDogs.some(d => d._id === friend._id))
+            <ul>{dog.friends && dog.friends.length > 0 ? dog.friends.filter(friend => dogs.some(d => d._id === friend._id))
             .map((friend, index) => 
             (<li key={index}>{friend.name}</li> )) 
             : 'No friends'}
