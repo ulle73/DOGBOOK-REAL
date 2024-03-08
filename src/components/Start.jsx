@@ -19,7 +19,7 @@ function Start({ dogs, setDogs, setFriendList}) {
 
     return (
         <div>
-            <h2>Start</h2>
+            <h2>DogBook by Ryd</h2>
             
             <ul>
                 {dogs.map((dog) => {
