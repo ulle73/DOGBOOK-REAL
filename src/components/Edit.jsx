@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react'
+import { useParams, useNavigate, Link } from 'react-router-dom'
+import axios from 'axios'
 
-function Edit() {
-  const { id } = useParams();
-  const[friendList, setFriendList] = useState([])
+function Edit({ friendList, setFriendList }) {
+
+  const { id } = useParams()
   const [dog, setDog] = useState({
     name: '',
     nickname: '',
@@ -13,76 +13,61 @@ function Edit() {
     bio: '',
     present: false,
     friends: []
-  });
+  })
 
   const navigate = useNavigate()
-
-
-  useEffect(() => {
-    async function getDataBackEnd() {
-        try {
-            const response = await axios.get('http://localhost:3000/dogs');
-            setFriendList(response.data);
-        } catch (error) {
-            console.error('Failed to fetch dogs:', error);
-        }
-    }
-
-    getDataBackEnd();
-}, [])
-
 
 
 useEffect(() => {
     async function fetchDog() {
         try {
-            const response = await axios.get(`http://localhost:3000/dogs/${id}`);
-            setDog(response.data);
-            console.log(dog);
+            const response = await axios.get(`http://localhost:3000/dogs/${id}`)
+            setDog(response.data)
+            console.log(dog)
 
         
             setFriendList((prevFriendList) => {
                 return prevFriendList.map((friend) => ({
                     ...friend,
                     checked: response.data.friends.some((f) => f._id === friend._id),
-                }));
-            });
+                }))
+            })
         } catch (error) {
-            console.error('Failed to fetch dog:', error);
+            console.error('Failed to fetch dog:', error)
         }
     }
 
-    fetchDog();
-}, [id]);
+    fetchDog()
+}, [id])
 
 function saveName(event) {
-    const { name, value, checked } = event.target;
-    const newValue = event.target.type === "checkbox" ? checked : value;
+    const { name, value, checked } = event.target
+    const newValue = event.target.type === "checkbox" ? checked : value
 
     if (name === "friends") {
-        const friendId = event.target.value;
-        const friend = friendList.find(friend => friend._id === friendId);
-        console.log("Selected friend:", friend);
+        const friendId = event.target.value
+        const friend = friendList.find(friend => friend._id === friendId)
+        console.log("friend:", friend)
 
         if (!checked) {
            
-            const updatedFriends = dog.friends.filter(friend => friend._id !== friendId);
+            const updatedFriends = dog.friends.filter(friend => friend._id !== friendId)
             setDog({
                 ...dog,
                 friends: updatedFriends,
-            });
+            })
         } else {
-            const updatedFriends = [...dog.friends, friend];
+            const updatedFriends = [...dog.friends, friend]
             setDog({
                 ...dog,
                 friends: updatedFriends,
-            });
+            })
         }
     } else {
         setDog({
             ...dog,
             [name]: newValue,
-        });
+        })
     }
 }
 
@@ -90,15 +75,15 @@ function saveName(event) {
 
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault()
     try {
-      const response = await axios.put(`http://localhost:3000/dogs/${id}`, dog);
-      console.log('Dog updated:', response.data);
+      const response = await axios.put(`http://localhost:3000/dogs/${id}`, dog)
+      console.log('dog updated:', response.data)
       navigate("/")
     } catch (error) {
-      console.error('Failed to update dog:', error);
+      console.error(error)
     }
-  };
+  }
 
   return (
     <div>
@@ -120,7 +105,7 @@ function saveName(event) {
       </form>
       <Link to="/">Back</Link>
     </div>
-  );
+  )
 }
 
-export default Edit;
+export default Edit

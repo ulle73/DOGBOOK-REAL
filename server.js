@@ -34,15 +34,13 @@ const dogSchema = new mongoose.Schema({
     },
     bio: String,
     friends: [{
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: 'Dog'
         name: String,
     }],
     present: {
         type: Boolean,
         default: false
     }
-});
+})
 
 
 
@@ -64,32 +62,32 @@ app.get('/dogs', async (req, res) => {
         const dogs = await Dog.find()
         res.status(200).json(dogs)
     } catch (error) {
-        res.sendStatus(500)
+        res.status(500).send()
     }
-});
+})
 
 
 
 app.get('/dogs/:id', async (req, res) => {
     try {
-        console.log("Request received for dog with ID:", req.params.id, typeof req.params.id);
+        console.log("Request received for dog with ID:", req.params.id, typeof req.params.id)
         
-    const dog = await Dog.findById(req.params.id.toString());
+    const dog = await Dog.findById(req.params.id.toString())
 
 
-        console.log("Dog found:", dog);
+        console.log("Dog", dog)
 
         if (!dog) {
-            console.log("Dog not found");
-            return res.status(404).json({ error: 'Dog not found' });
+            console.log("Dog not found")
+            return res.status(404).send()
         }
         
-        res.json(dog);
+        res.json(dog)
     } catch (error) {
-        console.error('Failed to fetch dog:', error);
-        res.status(500).json({ error: 'Failed to fetch dog' });
+        console.error(error)
+        res.status(500).send()
     }
-});
+})
 
 
 
@@ -103,26 +101,26 @@ app.post('/dogs', async (req, res) => {
             bio: req.body.bio,
             // friends: req.body.friends,
             present: req.body.present
-        });
+        })
         await newDog.save()
         res.status(201).json(newDog )
     } catch (error) {
-        res.sendStatus(500)
+        res.status(500).send()
     }
-});
+})
 
 
 app.put("/dogs/:id", async (req, res) => {
     try {
-      const { id } = req.params;
+      const { id } = req.params
       console.log("DETTA", req.params)
-      await Dog.findByIdAndUpdate(id,  req.body); // Uppdatera en hund i databasen
-      const updatedDog = await Dog.findById(id);
+      await Dog.findByIdAndUpdate(id,  req.body) // Uppdatera en hund i databasen
+      const updatedDog = await Dog.findById(id)
       console.log(updatedDog) // Hämta uppdaterad hund från databasen
-      res.status(200).json(updatedDog);
+      res.status(200).json(updatedDog)
     } catch (error) {
-      console.error("Failed to update dog:", error);
-      res.sendStatus(500);
+      console.error(error)
+      res.status(500).send()
     }
   })
 
@@ -132,11 +130,11 @@ app.delete('/dogs/:id', async (req, res) => {
         const id = req.params.id
         const deletedDog = await Dog.findByIdAndDelete(id)
         if (!deletedDog) {
-            return res.sendStatus(404)
+            return res.status(404).send()
         }
-        res.sendStatus(200)
+        res.status(200).send()
     } catch (error) {
-        res.sendStatus(500)
+        res.status(500).send()
     }
 })
 

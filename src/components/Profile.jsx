@@ -1,30 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import axios from 'axios';
-import Edit from './Edit';
+import React, { useState, useEffect } from 'react'
+import { useParams, Link } from 'react-router-dom'
+import axios from 'axios'
+// import Edit from './Edit'
 
 function Profile() {
-    const { id } = useParams();
-    console.log("ID:", id, typeof id);
+    const { id } = useParams()
+    console.log("ID:", id, typeof id)
 
     const [dogImage, setDogImage] = useState("")
     const [dog, setDog] = useState({
-      
-    });
-    const [allDogs, setAllDogs]= useState([])
+
+    })
+    const [allDogs, setAllDogs] = useState([])
 
 
     useEffect(() => {
         async function getDataBackEnd() {
             try {
-                const response = await axios.get('http://localhost:3000/dogs');
-                setAllDogs(response.data);
+                const response = await axios.get('http://localhost:3000/dogs')
+                setAllDogs(response.data)
             } catch (error) {
-                console.error('Failed to fetch dogs:', error);
+                console.error('Failed to fetch dogs:', error)
             }
         }
 
-        getDataBackEnd();
+        getDataBackEnd()
     }, [])
 
     useEffect(() => {
@@ -34,17 +34,17 @@ function Profile() {
                 const data = await get.json()
                 setDogImage(data.message)
 
-                const response = await axios.get(`http://localhost:3000/dogs/${id}`);
-                console.log("Resp", response);
-                setDog(response.data);
-            
+                const response = await axios.get(`http://localhost:3000/dogs/${id}`)
+                console.log("Resp", response)
+                setDog(response.data)
+
             } catch (error) {
-                console.error(error);
+                console.error(error)
             }
         }
 
-        fetchDog();
-    }, [id]);
+        fetchDog()
+    }, [id])
 
 
     return (
@@ -57,15 +57,12 @@ function Profile() {
             <p>Bio: {dog.bio}</p>
             <p>Present: {dog.present ? 'Yes' : 'No'}</p>
             <p>Friends: </p>
-            {/* <ul>{dog.friends && dog.friends.length > 0 ? dog.friends.map((friend, index) => (
-  <li key={index}>{friend.name}</li>
-)) : 'No friends'}</ul> */}
 
-<ul>
-                {dog.friends && dog.friends.length > 0 ? dog.friends.map((friend, index) => (
-                    // Kontrollera om vännen finns i allDogs innan den renderas
-                    allDogs.some(d => d._id === friend._id) && <li key={index}>{friend.name}</li>
-                )) : 'No friends'}
+            <ul>{dog.friends && dog.friends.length > 0 ? dog.friends.filter(friend => allDogs.some(d => d._id === friend._id))
+            .map((friend, index) => 
+            (<li key={index}>{friend.name}</li> )) 
+            : 'No friends'}
+
             </ul>
 
 
@@ -75,7 +72,7 @@ function Profile() {
             <Link to="/">Back</Link>
         </div>
 
-    );
+    )
 }
 
 export default Profile
