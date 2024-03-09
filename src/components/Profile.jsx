@@ -44,12 +44,16 @@ function Profile({dogs}) {
             <p>Present: {dog.present ? 'Yes' : 'No'}</p>
             <p>Friends: </p>
 
-            <ul>{dog.friends && dog.friends.length > 0 ? dog.friends.filter(friend => dogs.some(d => d._id === friend._id))
-            .map((friend, index) => 
-            (<li key={index}>{friend.name}</li> )) 
-            : 'No friends'}
+            <ul>
+  {dog.friends && dog.friends.length > 0 ? 
+    dog.friends
+      .filter(friend => dogs.some(d => d._id === friend._id))
+      .map((friend, index) => (
+        <li key={index}><Link to={`/profile/${friend._id}`}>{friend.name}</Link></li>
+      )) 
+    : 'Inga vänner'}
+</ul>
 
-            </ul>
 
 
             <Link to={`/edit/${id}`}>Edit</Link>
