@@ -96,7 +96,9 @@ function saveName(event) {
         <input type="text" name="bio" value={dog.bio} onChange={saveName} placeholder='bio' />
         <label>Present: <input type="checkbox" name="present" checked={dog.present} onChange={saveName} /></label>
         <h4>Add friends:</h4>
-        {friendList.map((friend) => {
+        {friendList
+        .filter(self=> self._id !== dog._id)
+        .map((friend) => {
           return <label key={friend._id}><input type="checkbox" name="friends" value={friend._id} onChange={saveName} checked={dog.friends.some((f) => f._id === friend._id)} />{friend.name}</label>   
         })}
 

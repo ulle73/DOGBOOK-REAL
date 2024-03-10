@@ -111,7 +111,7 @@ app.post('/dogs', async (req, res) => {
 
 app.put("/dogs/:id", async (req, res) => {
     try {
-      const { id } = req.params
+      const  id  = req.params.id
       console.log("DETTA", req.params)
       await Dog.findByIdAndUpdate(id,  req.body) // Uppdatera en hund i databasen
       const updatedDog = await Dog.findById(id)

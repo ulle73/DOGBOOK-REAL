@@ -3,15 +3,17 @@ import { Link } from 'react-router-dom'
 
 
 
-function Start({ dogs, setDogs, setFriendList}) {
+function Start({ dogs, setDogs, friendList, setFriendList}) {
 
 
 
     const deleteDog = async (id) => {
         setDogs(dogs.filter((dog) => dog._id !== id))
-        await fetch(`http://localhost:3000/dogs/${id}`, { method: "DELETE" })
-        setFriendList(dogs.filter((dog) => dog._id !== id))
+        
+        setFriendList((prevFriendList) => prevFriendList.filter((friend) => friend._id !== id))
 
+        await fetch(`http://localhost:3000/dogs/${id}`, { method: "DELETE" })
+console.log(friendList)
     }
 
 

@@ -47,11 +47,11 @@ function Profile({dogs}) {
             <ul>
   {dog.friends && dog.friends.length > 0 ? 
     dog.friends
-      .filter(friend => dogs.some(d => d._id === friend._id))
+      .filter(friend => dogs.some(dog => dog._id === friend._id))
       .map((friend, index) => (
         <li key={index}><Link to={`/profile/${friend._id}`}>{friend.name}</Link></li>
       )) 
-    : 'Inga vänner'}
+    : 'No friends'}
 </ul>
 
 
