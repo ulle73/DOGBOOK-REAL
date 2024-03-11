@@ -40,7 +40,7 @@ body::before {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
    
     padding: 50px;
-    height: 75vh;
+    /* height: 75vh; */
    
    
     
@@ -55,20 +55,67 @@ body::before {
     
 }
 
+.flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  
+}
 
 
-.dog-name{
-    color: rgb(0, 140, 255);
+
+.friends{
+    justify-content: space-evenly;
+    margin-top: 20px;
+    margin-bottom: 50px;
 }
 
 .dog-image{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 3px solid  rgb(0, 140, 255);
+
+}
+
+.dog-image-friend{
     height: 100px;
     width: 100px;
     border-radius: 50%;
     border: 3px solid  rgb(0, 140, 255);
-    justify-self: flex-start;
-    align-self: flex-start;
+
 }
+
+.dog-name{
+    color: rgb(0, 140, 255);
+   letter-spacing: 5px;
+   text-transform: uppercase;
+   margin-bottom: 0px;
+}
+
+.nickname {
+    color: rgb(107, 107, 107);
+    letter-spacing: 3px;
+    font-style: italic;
+    text-transform: lowercase;
+    margin: 5px;
+}
+
+.cake{
+    transform: scale(100%);
+    margin-bottom: 30px;
+    color: rgb(255, 0, 0);
+    margin-right: 10px;
+    margin-top: 30px;
+  
+}
+
+.age  {
+   font-size: 3em;
+   margin-top: 0px;
+   margin-bottom: 0px;
+}
+
 
 
 
@@ -138,7 +185,12 @@ button:hover, .submit-button:hover{
 }
 
 
+.center{
+    text-align: center;
+    align-self: center;
+    justify-self: center;
 
+}
 
 
 
