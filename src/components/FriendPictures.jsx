@@ -1,37 +1,3 @@
-// import React from 'react'
-// import { Link } from 'react-router-dom'
-// import axios from 'axios'
-
-
-// function FriendPicture ({ friends, dogs, friendDogImage }) {
-
-
-
-
-//         return (
-//             <>
-//       {friends && friends.length > 0 ? (
-//         friends
-//           .filter(friend => dogs.some(dog => dog._id === friend._id))
-//           .map((friend, index) => (
-//             <div key={index}>
-//               <div className="center">
-//                 <Link to={`/profile/${friend._id}`}>
-//                   <img className="dog-image-friend" src={friendDogImage}  />
-//                   <div>{friend.name}</div>
-//                 </Link>
-//               </div>
-//             </div>
-//           ))
-//       ) : (
-//         'No friends'
-//       )}
-//     </>
-//         );
-//       }
-
-//       export default FriendPicture;
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
