@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 function FriendPicture({ friends,  dogs }) {
-    const [friendImages, setFriendImages] = useState([]);
+    const [friendImages, setFriendImages] = useState([])
 
     useEffect(() => {
         const fetchFriendImages = async () => {
-            const images = [];
+            const images = []
             friends.forEach(async (friend) => {
                 try {
-                    const response = await axios.get(`https://dog.ceo/api/breeds/image/random`);
-                    images.push({ id: friend._id, image: response.data.message });
-                    setFriendImages([...images]); // Uppdatera state efter varje iteration
+                    const response = await axios.get(`https://dog.ceo/api/breeds/image/random`)
+                    images.push({ id: friend._id, image: response.data.message })
+                    setFriendImages([...images])
                 } catch (error) {
-                    console.error(error);
+                    console.error(error)
                 }
-            });
-        };
+            })
+        }
 
-        fetchFriendImages();
+        fetchFriendImages()
     }, [friends])
 
     return (
@@ -41,7 +41,7 @@ function FriendPicture({ friends,  dogs }) {
                 'No friends'
             )}
         </>
-    );
+    )
 }
 
-export default FriendPicture;
+export default FriendPicture
