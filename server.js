@@ -69,10 +69,10 @@ app.get('/dogs', async (req, res) => {
 
 app.get('/dogs/:id', async (req, res) => {
     try {
-        console.log("Request received for dog with ID:", req.params.id, typeof req.params.id)
+        const id = req.params.id
+        console.log("Get dog with ID:", id, typeof id)
         
-    const dog = await Dog.findById(req.params.id.toString())
-
+        const dog = await Dog.findById(id)
 
         console.log("Dog", dog)
 
@@ -87,6 +87,7 @@ app.get('/dogs/:id', async (req, res) => {
         res.status(500).send()
     }
 })
+
 
 
 

@@ -1,6 +1,12 @@
 *{
     /* border: red 1px solid; */
    
+   
+}
+
+.hr-line {
+    border-bottom-color: rgba(255, 0, 0, 0);
+    margin-bottom: 15px;
 }
 
 body {
@@ -67,7 +73,7 @@ body::before {
 .friends{
     justify-content: space-evenly;
     margin-top: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
 .dog-image{

@@ -1,28 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { DogBookContext } from './context'
 
 
 
-function Start({ dogs, setDogs, friendList, setFriendList}) {
+function Start() {
 
 
-
-    const deleteDog = async (id) => {
-        setDogs(dogs.filter((dog) => dog._id !== id))
-        
-        setFriendList((prevFriendList) => prevFriendList.filter((friend) => friend._id !== id))
-
-        await fetch(`http://localhost:3000/dogs/${id}`, { method: "DELETE" })
-console.log(friendList)
-    }
-
-
+    const { dogs, deleteDog } = useContext(DogBookContext)
 
 
     return (
         <div>
             <h2>DogBook by Ryd</h2>
-            
+
             <ul>
                 {dogs.map((dog) => {
                     return <li key={dog._id}><Link to={`/profile/${dog._id}`} style={{ color: dog.present ? "rgb(1,204,1)" : "red" }}>{dog.name}</Link>
@@ -33,7 +24,7 @@ console.log(friendList)
                         </button></li>
                 })}
             </ul>
-            
+
             <Link to="/create">Create Dog</Link>
         </div>
     )

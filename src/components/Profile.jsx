@@ -1,47 +1,42 @@
-import React, { useState, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import { DogBookContext } from './context'
 import axios from 'axios'
+import FriendPicture from './FriendPictures'
 
 
-function Profile({ dogs }) {
+function Profile() {
     const { id } = useParams()
     console.log("ID:", id, typeof id)
 
-    const [dogImage, setDogImage] = useState("")
-    const [friendDogImage, setFriendDogImage] = useState("")
-    const [dog, setDog] = useState({
+    const { dog, setDog, dogs, dogImage, friendDogImage, setFriendList } = useContext(DogBookContext)
+    console.log(dog)
 
-    })
+
 
 
     useEffect(() => {
-        async function fetchDog() {
+        async function getDogById(id) {
             try {
-                const get = await fetch("https://dog.ceo/api/breeds/image/random")
-                const data = await get.json()
-                setDogImage(data.message)
+                if (id) {
+                    const response = await axios.get(`http://localhost:3000/dogs/${id}`)
+                    setDog(response.data)
+                    console.log(dog)
 
-                const friendGet = await fetch("https://dog.ceo/api/breeds/image/random")
-                const friendData = await friendGet.json()
-                setFriendDogImage(friendData.message)
-
-
-                const response = await axios.get(`http://localhost:3000/dogs/${id}`)
-                console.log("Resp", response)
-                setDog(response.data)
-
+                    setFriendList((prevFriendList) => {
+                        return prevFriendList.map((friend) => ({
+                            ...friend,
+                            checked: response.data.friends.some((f) => f._id === friend._id),
+                        }))
+                    })
+                }
             } catch (error) {
                 console.error(error)
             }
         }
 
-        fetchDog()
+        getDogById(id)
     }, [id])
-
-
-
-
-
 
 
     return (
@@ -54,46 +49,22 @@ function Profile({ dogs }) {
 
             <p className="center bio">{dog.bio}</p>
             <p className="center">Present: {dog.present ? 'Yes' : 'No'}</p>
-            {/* <span className="flex"><p>Friends: </p>
 
-<ul>
-{dog.friends && dog.friends.length > 0 ? 
-dog.friends
-.filter(friend => dogs.some(dog => dog._id === friend._id))
-.map((friend, index) => (
-<div key={index}>
-<img className="dog-image-friend" src={dogImage}  />
-<li><Link to={`/profile/${friend._id}`}>{friend.name}</Link></li>
-</div>
-)) 
-: 'No friends'}
-</ul></span>  */}
-<div> <hr /></div>
+            <span className="hr-line"> <hr /></span>
 
-            {/* <p>Friends: </p> */}
+
 
             <div className="flex friends">
-                {dog.friends && dog.friends.length > 0 ?
-                    dog.friends
-                        .filter(friend => dogs.some(dog => dog._id === friend._id))
-                        .map((friend, index) => (
-                            <div key={index}>
-                                <div className="center">
-                                    <Link to={`/profile/${friend._id}`}>
-                                        <img className="dog-image-friend" src={friendDogImage} />
-                                        <div>{friend.name}</div>
-                                    </Link>
-                                </div>
-                            </div>
-                        ))
-                    : 'No friends'}
+
+                <FriendPicture friends={dog.friends} dogs={dogs} friendDogImage={friendDogImage} dog={dog} />
+
             </div>
 
 
 
 
             <Link to={`/edit/${id}`}>Edit</Link>
-          
+
             <br />
             <Link to="/">Back</Link>
         </div>

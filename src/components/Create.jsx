@@ -1,45 +1,26 @@
-import React, { useState } from "react"
-import axios from "axios"
-import { Link, useNavigate } from "react-router-dom"
+import React, { useContext } from "react"
+import { Link } from "react-router-dom"
+import { DogBookContext } from './context'
 
-const Create = ({dogs, setDogs, friendList, setFriendList}) => {
-  const [newDog, setNewDog] = useState({
-   
-  })
+const Create = () => {
 
-  const navigate = useNavigate()
 
-  function saveName(event) {
-    const value = event.target.type === "checkbox" ? event.target.checked : event.target.value
-    setNewDog({
-      ...newDog,
-      [event.target.name]: value,
-    })
-  }
+  const { saveData, saveDog } = useContext(DogBookContext)
 
-  async function saveData(event) {
-    event.preventDefault()
-    try {
-      const resp = await axios.post('http://localhost:3000/dogs', newDog)
-      console.log(resp.data)
-      setDogs([...dogs, resp.data])
-      setFriendList([...friendList, resp.data])
-      navigate("/")
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  
+
+  
 
   return (
     <div className="container">
       <h1>Create DOG</h1>
       <form onSubmit={saveData}>
-        <input onChange={saveName} type="text" placeholder="name" name="name" required />
-        <input onChange={saveName} type="text" placeholder="nickename" name="nickname" required />
-        <input onChange={saveName} type="text" placeholder="owner" name="owner" required />
-        <input onChange={saveName} type="number" placeholder="age" name="age" required />
-        <input onChange={saveName} type="text" placeholder="bio" name="bio" required />
-        <p>Present: <input onChange={saveName} type="checkbox" name="present" /></p>
+        <input onChange={saveDog} type="text" placeholder="name" name="name" required />
+        <input onChange={saveDog} type="text" placeholder="nickename" name="nickname" required />
+        <input onChange={saveDog} type="text" placeholder="owner" name="owner" required />
+        <input onChange={saveDog} type="number" placeholder="age" name="age" required />
+        <input onChange={saveDog} type="text" placeholder="bio" name="bio" required />
+        <p>Present: <input onChange={saveDog} type="checkbox" name="present" /></p>
 
         <input className="submit-button" type="submit" name="Submit" value="Save Info" />
       </form>
