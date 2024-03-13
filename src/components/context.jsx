@@ -136,7 +136,7 @@ export const DogProvider = ({children}) => {
     }
 
 
-    const contextValue = {
+    const props = {
         friendList,
         setFriendList,
         dog,
@@ -157,7 +157,7 @@ export const DogProvider = ({children}) => {
       }
     
       return (
-        <DogBookContext.Provider value={contextValue}>
+        <DogBookContext.Provider value={props}>
           {children}
         </DogBookContext.Provider>
       )

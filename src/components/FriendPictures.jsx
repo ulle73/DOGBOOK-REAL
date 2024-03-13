@@ -33,17 +33,11 @@ function FriendPicture({ friends, dogs, dog }) {
                             <div key={index}>
                                 <div className="center">
                                     <Link to={`/profile/${friend._id}`}>
-                                        <img className="dog-image-friend" src={friendImages.find(img => img.id === friend._id)?.image} alt={`Friend ${index}`} />
+                                        <img className="dog-image-friend" src={friendImages.find(img => img.id === friend._id)?.image} />
                                         <div className="friend-name">{friend.name}</div>
                                     </Link>
                                 </div>
-                            </div>)
-                    }
-
-                    )
-            ) : (
-                'No friends'
-            )}
+                            </div>)})) : ('No friends')}
         </>
     )
 }
