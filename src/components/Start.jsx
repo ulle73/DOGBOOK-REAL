@@ -11,8 +11,9 @@ function Start() {
 
 
     return (
-        <div>
-            <h2>DogBook by Ryd</h2>
+        <>
+        <div className="container">
+            <h1 className="center">DogBook by Ryd</h1>
 
             <ul>
                 {dogs.map((dog) => {
@@ -25,8 +26,10 @@ function Start() {
                 })}
             </ul>
 
-            <Link to="/create">Create Dog</Link>
+            <Link className="create-button" to="/create">Create Dog</Link>
         </div>
+       
+        </>
     )
 }
 

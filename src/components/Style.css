@@ -44,9 +44,8 @@ body::before {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-   
     padding: 50px;
-    /* height: 75vh; */
+    height: 75vh;
    
    
     
@@ -57,8 +56,8 @@ body::before {
     display: flex;
     flex-direction: column;
     justify-content: center;
+  
    
-    
 }
 
 .flex {
@@ -69,18 +68,23 @@ body::before {
 }
 
 
-
 .friends{
     justify-content: space-evenly;
     margin-top: 20px;
     margin-bottom: 40px;
 }
 
+.friend-name{
+    color: #00aaff;
+}
+
 .dog-image{
     height: 200px;
     width: 200px;
     border-radius: 50%;
-    border: 3px solid  rgb(0, 140, 255);
+    /* border: 4px solid  #00aaff; */
+    box-shadow: 0 0 20px 5px  rgb(0, 0, 0);
+  
 
 }
 
@@ -88,12 +92,14 @@ body::before {
     height: 100px;
     width: 100px;
     border-radius: 50%;
-    border: 3px solid  rgb(0, 140, 255);
+    /* border: 3px solid  #00aaff; */
+    box-shadow: 0 0 10px 2px  rgb(0, 0, 0);
+    margin-bottom: 10px;
 
 }
 
 .dog-name{
-    color: rgb(0, 140, 255);
+    color: #00aaff;
    letter-spacing: 5px;
    text-transform: uppercase;
    margin-bottom: 0px;
@@ -106,6 +112,12 @@ body::before {
     text-transform: lowercase;
     margin: 5px;
 }
+
+.bio, .present{
+    font-weight: bold; 
+
+}
+
 
 .cake{
     transform: scale(100%);
@@ -132,15 +144,14 @@ body::before {
 h1 {
     text-align: center;
     color: #00aaff;
+  
 }
 
-h2 {
-    color: #00aaff; 
-}
 
 ul {
     list-style-type: none;
     padding: 0;
+    
 }
 
 li {
@@ -149,7 +160,7 @@ li {
 
 a {
     text-decoration: none;
-    color: #66ccff; 
+    color:  #00aaff; 
 }
 
 a:hover {
@@ -163,7 +174,7 @@ form {
 label {
     display: block;
     margin-bottom: 5px;
-    color: #00aaff; 
+    color:  rgb(0, 140, 255); 
 }
 
 input[type="text"],[type="number"],
@@ -175,7 +186,7 @@ textarea {
     border-radius: 3px;
     box-sizing: border-box;
     color: #000000;
-   caret-color: #00aaff;
+   caret-color: rgb(0, 140, 255);
 }
 
 button, .submit-button {

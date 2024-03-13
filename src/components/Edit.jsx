@@ -25,8 +25,8 @@ function Edit() {
 
 
   return (
-    <div>
-      <h2>Edit Dog</h2>
+    <div className="container">
+      <h1 className="center">Edit Dog</h1>
       <form onSubmit={handleSubmit}>
         <input type="text" name="name" value={dog.name} onChange={saveName} placeholder='name' required />
         <input type="text" name="nickname" value={dog.nickname} onChange={saveName} placeholder='nicknam' />
